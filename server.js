@@ -1,6 +1,7 @@
 var _ = require('underscore');
 
 var dangerSearch = require('./lib/danger-search');
+var alertSubscribers = require('./lib/alert-subscribers');
 
 var express = require('express');
 var app = express();
@@ -29,7 +30,7 @@ initClassifier(function(classify) {
 			if(objects.length == 0) {
 				return res.status(404).send();
 			};
-			var closest = _.minBy(objects, function(object) {
+			var closest = _.min(objects, function(object) {
 				return object.attributes.center.kilometersTo(point);
 			});
 			if(closest.attributes.center.kilometersTo(point) > closest.attributes.radius) {
@@ -97,6 +98,10 @@ initClassifier(function(classify) {
 			results.forEach(function(campus) {
 				dangerSearch(campus, classify, function(dangerLevel){
 					console.log("The danger level for " + campus.attributes.name + " is " + dangerLevel);
+
+					if(dangerLevel > 0.20) {
+						alertSubscribers(Parse, campus);
+					}
 				});
 			});
 		}, error: function(err) {
