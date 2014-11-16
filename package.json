@@ -1,0 +1,27 @@
+{
+  "name": "dangr",
+  "version": "0.1.0",
+  "description": "Detect danger in tweets",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gberger/dangr.git"
+  },
+  "authors": [
+    "Guilherme Berger <guilherme.berger@gmail.com>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gberger/dangr/issues"
+  },
+  "homepage": "https://github.com/gberger/dangr",
+  "dependencies": {
+    "csvtojson": "^0.3.16",
+    "dclassify": "^1.0.0",
+    "express": "^4.10.2",
+    "twitter": "^0.2.13"
+  }
+}
